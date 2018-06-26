@@ -21,7 +21,7 @@ MajorContract.prototype = {
     init: function() {
         this.size = 0;
     },
-    set: function(from, tag, content, pubTime) {
+    save: function(from, tag, content, pubTime) {
         var value = new MajorItem(this.size, from, tag, content, pubTime);
         var index = this.size;
         this.dataMap.set(index, value);

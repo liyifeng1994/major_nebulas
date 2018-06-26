@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>考得好不如专业选得好</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>考得好不如专业选得好</h1>
+    <p>
+      TO准大学生：不想四年后毕业找不到工作还啃老，你必须听听过来人的经验。<br>
+      TO广大社会人：你被你的专业坑过吗？你要为你的专业打call吗？这里能让你畅所欲言！
+    </p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button" id="showSaveModal">过来人说</a></p>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="saveModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">过来人说</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">专业</label>
+            <input type="text" class="form-control" id="ipt_tag" placeholder="你读什么专业">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">过来人说</label>
+            <textarea class="form-control" id="ipt_content" placeholder="随便说点什么吧" rows="5"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="save">发布</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="container">
+  <div class="row" id="show">
+    <!-- <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3>软件工程</h3>
+          <p>搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖</p>
+          <p class="text-right">2018-06-25</p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+
+<footer>
+  <div class="text-center">
+    <p>&copy;&nbsp;2018&nbsp;lyf.soecode.com</p>
+    <p>POWERED BY <img src="./img/nebulas-logo.png" alt="nebulas" width="80px"></p>
+  </div>
+</footer>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nebpay.js@0.2.0/dist/nebPay.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nebulas@0.5.2/dist/nebulas.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

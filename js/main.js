@@ -1,7 +1,7 @@
 "use strict"
 
 var userAddress
-var dappAddress = "n1r9uaw1yQusg7B9kU1ZD9eeKLgNxmgn7GM"
+var dappAddress = "n1x3FC9ruJZUeQBCJoeDGqMVHHKSA2oPe8V"
 
 var nebulas = require("nebulas"),
     Account = nebulas.Account,
@@ -54,23 +54,27 @@ function getAll() {
     })
 }
 
+var colors = ['primary','success','danger','warning','info']
+
 function cbGetAll(resp) {
     var result = resp.result
     console.log("return of rpc call: " + JSON.stringify(result))
 
-    if (result.length > 0) {
-    // var resultString = JSON.stringify(result)
-    // if(resultString.search("tag") !== -1){
+    var resultString = JSON.stringify(result)
+    if(resultString.search(/error/i) == -1){
         result = JSON.parse(result)
         $('#show').html('')
-        for (var data of result) {
+        // for (var data of result) {
+        for (var i = result.length - 1; i >= 0; i--) {
+            var data = result[i]
+            var color = randomArray(colors)
             var item = `
-                <div class="col-sm-6 col-md-4">
-                  <div class="thumbnail">
-                    <div class="caption">
-                      <h3>`+data.tag+`</h3>
-                      <p>`+data.content+`</p>
-                      <p class="text-right">`+data.pubTime+`</p>
+                <div class="col-sm-6 col-md-4 mb-4">
+                  <div class="card border-`+color+`">
+                    <div class="card-body">
+                      <h5 class="card-title text-`+color+`">`+data.tag+`</h5>
+                      <p class="card-text">`+data.content+`</p>
+                      <p class="card-text"><small class="text-muted">`+data.pubTime+`</small></p>
                     </div>
                   </div>
                 </div>
@@ -78,32 +82,10 @@ function cbGetAll(resp) {
             $('#show').append(item)
         }
     } else {
+        $('#show').text('数据加载失败，请稍后再试！')
         console.log(result)
     }
 }
-
-function getCurentTime() {
-    var date = new Date();
-    var y = date.getUTCFullYear();
-    var m = date.getUTCMonth() + 1;
-    m = m < 10 ? ('0' + m) : m;
-    var d = date.getUTCDate();
-    d = d < 10 ? ('0' + d) : d;
-    var h = date.getUTCHours();
-    h=h < 10 ? ('0' + h) : h;
-    var minute = date.getUTCMinutes();
-    minute = minute < 10 ? ('0' + minute) : minute;
-    var second = date.getUTCSeconds();
-    second = second < 10 ? ('0' + second) : second;
-
-    var timeStr = y+'-'+m+'-'+d;
-    // var timeStr = y+'-'+m+'-'+d+' '+h+':'+minute+':'+second;
-    return timeStr;
-}
-
-$("#showSaveModal").click(function() {
-    $('#saveModal').modal()
-})
 
 $("#save").click(function() {
     var tag = $("#ipt_tag").val().trim()
@@ -118,7 +100,7 @@ $("#save").click(function() {
         $('#ipt_content').focus()
         return
     } else if (content.length > 300) {
-        alert('内容只能输入300个字，言简意赅吧！')
+        alert('内容只能输入300个字，要言简意赅！')
         $('#ipt_content').focus()
         return
     }
@@ -138,9 +120,9 @@ $("#save").click(function() {
     var callArgs = JSON.stringify([from, tag, content, pubTime])
 
     serialNumber = nebPay.call(to, value, callFunction, callArgs, {
-        // qrcode: {
-        //     showQRCode: false
-        // },
+        qrcode: {
+            showQRCode: false
+        },
         listener: cbSave,
         callback: callbackUrl
     })
@@ -160,7 +142,6 @@ function funcIntervalQuery() {
             var respObject = JSON.parse(resp)
             if(respObject.code === 0){
                 clearInterval(intervalQuery)
-                // getAll()
             }
         })
         .catch(function (err) {
@@ -173,8 +154,16 @@ function cbSave(resp) {
     var respString = JSON.stringify(resp)
     if(respString.search("rejected by user") !== -1){
         clearInterval(intervalQuery)
-        alert(respString)
     }else if(respString.search("txhash") !== -1){
-        alert('发布成功！稍后刷新查看。\n交易地址：' + resp.txhash)
+        $('#ipt_tag').val('')
+        $('#ipt_content').val('')
+        $('#successTips').html(`
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>提交成功！</strong>稍后刷新页面查看结果。交易地址：`+resp.txhash+`
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            `)
     }
 }

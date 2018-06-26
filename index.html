@@ -2,32 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<title>考得好不如专业选得好</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="jumbotron">
   <div class="container">
-    <h1>考得好不如专业选得好</h1>
-    <p>
-      TO准大学生：不想四年后毕业找不到工作还啃老，你必须听听过来人的经验。<br>
-      TO广大社会人：你被你的专业坑过吗？你要为你的专业打call吗？这里能让你畅所欲言！
+    <h1 class="display-4">考得好不如专业选得好</h1>
+    <div class="my-4"></div>
+    <p class="lead">TO准大学生：不想四年后毕业找不到工作还啃老，你必须听听过来人的经验。</p>
+    <p class="lead">TO广大社会人：你被你的专业坑过吗？你要为你的专业打call吗？这里能让你畅所欲言！</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#saveModal">过来人说</a>
     </p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button" id="showSaveModal">过来人说</a></p>
   </div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="saveModal">
+<div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">过来人说</h4>
+        <h5 class="modal-title" id="exampleModalLabel">过来人说</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <form>
@@ -37,43 +38,52 @@
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">过来人说</label>
-            <textarea class="form-control" id="ipt_content" placeholder="随便说点什么吧" rows="5"></textarea>
+            <textarea class="form-control" id="ipt_content" placeholder="学些什么，出来干什么（300字）" rows="5"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" id="save">发布</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="save">提交</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
+
+<div class="container" id="successTips">
+  <!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>提交成功！</strong>稍后刷新页面查看结果。交易地址：
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+</div>
 
 <div class="container">
   <div class="row" id="show">
-    <!-- <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>软件工程</h3>
-          <p>搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖</p>
-          <p class="text-right">2018-06-25</p>
+    <p class="ml-3">loading...</p>
+    <!-- <div class="col-sm-6 col-md-4 mb-4">
+      <div class="card border-primary">
+        <div class="card-body">
+          <h5 class="card-title text-primary">软件工程</h5>
+          <p class="card-text">搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖搬砖</p>
+          <p class="card-text"><small class="text-muted">2018-06-25</small></p>
         </div>
       </div>
     </div> -->
   </div>
 </div>
 
-<footer>
-  <div class="text-center">
-    <p>&copy;&nbsp;2018&nbsp;lyf.soecode.com</p>
-    <p>POWERED BY <img src="./img/nebulas-logo.png" alt="nebulas" width="80px"></p>
-  </div>
+<footer class="mt-3 text-center">
+  <p>&copy;&nbsp;2018&nbsp;lyf.soecode.com</p>
+  <p>POWERED BY <a href="https://incentive.nebulas.io/cn/signup.html?invite=1h67P" target="_blank"><img src="./img/nebulas-logo.png" alt="nebulas" width="80px"></a></p>
 </footer>
 
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/nebpay.js@0.2.0/dist/nebPay.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/nebulas@0.5.2/dist/nebulas.js"></script>
-<script src="main.js"></script>
+<script src="lib/jquery-3.3.1.min.js"></script>
+<script src="lib/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+<script src="lib/nebPay.js"></script>
+<script src="lib/nebulas.js"></script>
+<script src="js/main.js"></script>
+<script src="js/util.js"></script>
 </body>
 </html>

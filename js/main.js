@@ -194,7 +194,7 @@ function cbSave(resp) {
         $('#ipt_content').val('')
         $('#successTips').html(`
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-              <strong>提交成功！</strong>稍后刷新页面查看结果。交易地址：`+resp.txhash+`
+              <strong>提交成功！</strong>稍后刷新页面查看结果。交易哈希：`+resp.txhash+`
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

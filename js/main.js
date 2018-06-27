@@ -17,6 +17,7 @@ var intervalQuery
 
 $(function(){
     initUserAddress()
+    getSize()
     getAll()
 })
 
@@ -32,6 +33,39 @@ function initUserAddress(){
            console.log(userAddress)
         }
     });
+}
+
+function getSize() {
+    var from = Account.NewAccount().getAddressString()
+    var value = "0"
+    var nonce = "0"
+    var gas_price = "1000000"
+    var gas_limit = "2000000"
+    var callFunction = "len"
+    var callArgs = JSON.stringify([])
+    var contract = {
+        "function": callFunction,
+        "args": callArgs
+    }
+
+    neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
+        cbGetSize(resp)
+    }).catch(function (err) {
+        console.log("error:" + err.message)
+    })
+}
+
+function cbGetSize(resp) {
+    var result = resp.result
+    console.log("return of rpc call: " + JSON.stringify(result))
+
+    var resultString = JSON.stringify(result)
+    if(resultString.search(/error/i) == -1){
+        result = JSON.parse(result)
+        $('#size').text(result)
+    } else {
+        console.log(result)
+    }
 }
 
 function getAll() {

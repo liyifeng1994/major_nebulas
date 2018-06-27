@@ -62,9 +62,6 @@ MajorContract.prototype = {
             }
         }
         return result;
-    },
-    del: function(index) {
-        return this.dataMap.del(index);
     }
 };
 
